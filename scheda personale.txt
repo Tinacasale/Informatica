@@ -1,0 +1,93 @@
+<html>
+	<head>
+	<title> Scheda personale </title>
+	
+		<p>
+		Casale Martina
+		</p>
+		
+		<p>
+		15 anni
+		</p>
+		
+		<p>
+		3°BLSA
+		</p>
+		
+		<p>
+		26/10/2008
+		</p>
+		
+		<p>
+		Nichelino
+		
+		</p>
+		
+		<p>
+		Sono cresciuta a Nichelino e qualche anno fa ho cambiato casa ma sono rimasta sempre a Nichelino.
+		Una mia qualità distintiva penso sia l'avere semrpre la testa altrove, mentre un aspetto della vita che ritengo sia importante da condividere è il divertimento.
+		</p>
+		
+	
+		<p>
+		3 cose che mi piacciono:
+		<ul>
+			<li>pallavolo</li>
+			<li>film e serie Tv</li>
+			<li>musica</li>
+		</ul>
+		</p>
+		
+		<p>
+		Faccio pallavolo da 10 anni e mi è sempre piaciuto giocarci, quando gioco a pallavolo mi sento libera e non penso più a nient'altro.
+		</p>
+		
+		<p>
+		Guardare i film mi appasiona tanto e mi permette di deviare dalla realtànì, non facendomi pensare a certe cose.
+		</p>
+		
+		<p>
+		La musica, allo stesso modo dei film, mi trasporta in un altra dimensione e mi fa rilassare.
+		</p>
+		
+		<p>
+		3 competenze che ho acquisito:
+		<ul>
+			<li>sport</li>
+			<li>lingue straniere</li>
+			<li>abilità informatiche</li>
+		</ul>
+		</p>
+		
+		<p>
+		Fin da piccola ho sempre avuto il fisico e la predisposizione allo sport, anche avendo fatto pallavolo da sempre non ho mai praticato altri sport, ma me la so cavare quasi sempre.
+		</p>
+		
+		<p>
+		Mio padre mi ha semrpre aiutato con le linue straniere sin dalle elementari e questo mi ha aiutato molto. Col tempo ho capito che le lingue sono importanti e mi sto mettendo a studiarne altre.
+		</p>
+		
+		<p>
+		Sempre mio padre mi ha passato la sua esperienza nell'informatica e mi ha dato delle competenze di base per farmi capire l'informatica velocemente.
+		</p>
+		
+		<p>
+		Dopo il diploma mi piacerebbe andare all'università e mi piacerebbe intraprendere un percorso di tipo veterinario, essendo che mi piaccciono molto gli animali.
+		</p>
+		
+		<p>
+		Una frase da cui ricavo ispirazione è: whatever it takes. Questa frase mi rappresenta perchè nonostante le difficoltà trovo sempre un modo per andare avanti e continuo a crederci sempre.
+		</p>
+		
+		<p>
+		<h2>Simbolo/foto che mi rappresenta</h2>
+			<img src="linkin park foto.jpg" alt="Foto che mi rappresenta" width="419" height="500">
+		</p>	
+		
+		<p>		
+		Questa foto rappresenta l'aggressività e la tenacia di un soldato, son solo nei confronti della musica rock in confronto a quella dell'hip pop, ma anche nella vita di tutti i giorni.
+		</p>
+	
+	
+	</head>
+</html>
