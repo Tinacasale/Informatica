@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 1000px;
+  height: 800px;
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 1000px;
+  height: 1000px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
+}
+
+.flip-card-back {
+  background-color: #2980b9;
+  color: white;
+  transform: rotateY(180deg);
+}
+</style>
+</head>
+<body>
+
+<h1>Card Flip with Text</h1>
+<h3>Hover over the image below:</h3>
+
+<div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <img src="mia foto.jpg" alt="Avatar" style="width:1000px;height:1000px;">
+    </div>
+    <div class="flip-card-back">
+
+                <p>
+                Casale Martina
+                </p>
+                
+                <p>
+                15 anni
+                </p>
+                
+                <p>
+                3°BLSA
+                </p>
+                
+                <p>
+                26/10/2008
+                </p>
+                
+                <p>
+                Nichelino
+                
+                </p>
+                
+                <p>
+                Sono cresciuta a Nichelino e qualche anno fa ho cambiato casa ma sono rimasta sempre a Nichelino.
+                Una mia qualità distintiva penso sia l'avere semrpre la testa altrove, mentre un aspetto della vita che ritengo sia importante da condividere è il divertimento.
+                </p>
+                
+            
+                <p>
+                3 cose che mi piacciono:
+                <ul>
+                    <li>pallavolo</li>
+                    <li>film e serie Tv</li>
+                    <li>musica</li>
+                </ul>
+                </p>
+                
+                <p>
+                Faccio pallavolo da 10 anni e mi è sempre piaciuto giocarci, quando gioco a pallavolo mi sento libera e non penso più a nient'altro.
+                </p>
+                
+                <p>
+                Guardare i film mi appasiona tanto e mi permette di deviare dalla realtànì, non facendomi pensare a certe cose.
+                </p>
+                
+                <p>
+                La musica, allo stesso modo dei film, mi trasporta in un altra dimensione e mi fa rilassare.
+                </p>
+                
+                <p>
+                3 competenze che ho acquisito:
+                <ul>
+                    <li>sport</li>
+                    <li>lingue straniere</li>
+                    <li>abilità informatiche</li>
+                </ul>
+                </p>
+                
+                <p>
+                Fin da piccola ho sempre avuto il fisico e la predisposizione allo sport, anche avendo fatto pallavolo da sempre non ho mai praticato altri sport, ma me la so cavare quasi sempre.
+                </p>
+                
+                <p>
+                Mio padre mi ha semrpre aiutato con le linue straniere sin dalle elementari e questo mi ha aiutato molto. Col tempo ho capito che le lingue sono importanti e mi sto mettendo a studiarne altre.
+                </p>
+                
+                <p>
+                Sempre mio padre mi ha passato la sua esperienza nell'informatica e mi ha dato delle competenze di base per farmi capire l'informatica velocemente.
+                </p>
+                
+                <p>
+                Dopo il diploma mi piacerebbe andare all'università e mi piacerebbe intraprendere un percorso di tipo veterinario, essendo che mi piaccciono molto gli animali.
+                </p>
+                
+                <p>
+                Una frase da cui ricavo ispirazione è: whatever it takes. Questa frase mi rappresenta perchè nonostante le difficoltà trovo sempre un modo per andare avanti e continuo a crederci sempre.
+                </p>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
