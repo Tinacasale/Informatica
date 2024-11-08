@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesta pagina Javascript</title>
+   
+    <style>
+        #Box1{
+            text-align: center;
+            font-size: 250px;
+        }
+
+    </style>
+
+</head>
+<body>
+    <h1>
+        La mia prima pagina Javascript
+    </h1>
+
+    
+    <div id="Box1">
+
+        <p id="demo"></p>
+
+        <script>
+
+            let contatore=10;
+            const element = document.getElementById("demo");
+            const temp1=setInterval(stampaCIAO
+              , 1000)
+      
+            function stampaCIAO(){
+            contatore--;
+          element.innerHTML+=contatore - " ";
+      
+        if (contatore==10)
+        clearInterval (temp1);
+      }
+          
+      
+      
+      
+          </script>
+      
+
+    </div>
+
+   
+</body>
+</html>
