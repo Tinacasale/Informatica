@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> contatore centesimale</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+            text-align: center;
+        }
+        #contatore {
+            font-size: 50px;
+            color: #333;
+        }
+        button {
+            background-color: blue;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: blue;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+        .sum {
+            margin-top: 30px;
+            font-size: 25px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Contatore che decrementa da 100.00 a 0.00</h1>
+    <div id="contatore">100.00</div>
+    <button onclick="registratoreTempo(90)">Premi quando arrivi a 90</button>
+    <button onclick="registratoreTempo(80)">Premi quando arrivi a 80</button>
+    <button onclick="registratoreTempo(70)">Premi quando arrivi a 70</button>
+    <button onclick="registratoreTempo(60)">Premi quando arrivi a 60</button>
+    <button onclick="registratoreTempo(50)">Premi quando arrivi a 50</button>
+    <button onclick="registratoreTempo(40)">Premi quando arrivi a 40</button>
+    <button onclick="registratoreTempo(30)">Premi quando arrivi a 30</button>
+    <button onclick="registratoreTempo(20)">Premi quando arrivi a 20</button>
+    <button onclick="registratoreTempo(10)">Premi quando arrivi a 10</button>
+    <button onclick="registratoreTempo(0)">Premi quando arrivi a 0</button>
+
+    <div class="result" id="risultato"></div>
+    <div class="sum" id="sommaDifferenze"></div>
+
+    <script>
+        let tempoIniziale = 100.00;  
+        let tempoAttuale = tempoIniziale;
+        let intervallo = 0.01; 
+        let tempoIdeale = 100.00;  
+        let differenze = []; 
+
+        let intervalloId; 
+        let tempoUltimoPremuto = null; 
+
+        
+        function aggiornaContatore() {
+            tempoAttuale -= intervallo; 
+
+            if (tempoAttuale <= 0) {
+                clearInterval(intervalloId);
+            }
+
+            document.getElementById('contatore').textContent = tempoAttuale.toFixed(2);
+        }
+
+       
+        function avviaContatore() {
+            intervalloId = setInterval(aggiornaContatore, 10); 
+        }
+
+        avviaContatore();  
+
+        
+        function registrareTempo(valore) {
+            if (tempoAttuale <= valore) {
+                let tempoReale = tempoAttuale.toFixed(2); 
+                let differenza = Math.abs(tempoIdeale - tempoReale); 
+                differenze.push(differenza); 
+
+                tempoIdeale -= 10; 
+                tempoUltimoPremuto = tempoReale; 
+
+               
+                document.getElementById('risultato').textContent = `Tempo reale quando hai premuto il bottone a ${valore}: ${tempoReale} secondi.`;
+                document.getElementById('sommaDifferenze').textContent = `Somma delle differenze: ${sommaDifferenze().toFixed(2)} secondi.`;
+            }
+        }
+
+      
+        function sommaDifferenze() {
+            return differenze.reduce((acc, curr) => acc + curr, 0);
+        }
+
+    </script>
+
+</body>
+</html>

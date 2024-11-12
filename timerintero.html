@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contatore Decrementale</title>
+        <h2> Contatore decrementale </h2>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: white;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+        #contatore1 {
+            font-size: 30px;
+            color: black;
+            margin-bottom: 20px;
+        }
+        #contatore2 {
+            font-size: 30px;
+            color: green;
+            margin-top: 20px;
+        }
+        #divContatore2 {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="contatore1">10</div>
+        <button onclick="decrementacontatore1()">Decrementa</button>
+
+        <div id="divContatore2">
+            <div id="contatore2">0</div>
+        </div>
+    </div>
+
+    <script>
+        let count1 = 10;
+        let count2 = 0; 
+
+     
+        function decrementacontatore1() {
+            if (count1 > 0) {
+                count1--; 
+                document.getElementById("contatore1").textContent = count1;
+            } else {
+               
+                document.getElementById("divContatore2").style.display = "block";
+                incrementaContatore2();
+            }
+        }
+
+    
+        function incrementaContatore2() {
+            if (count2 < 10) {
+                count2++;
+                document.getElementById("contatore2").textContent = count2;
+                setTimeout(incrementaContatore2, 500); 
+            }
+        }
+    </script>
+
+</body>
+</html>
