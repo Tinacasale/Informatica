@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aforismi di Scienziati</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+            width: 1650px;
+        }
+        .aforisma {
+            margin-bottom: 20px;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            background-color: blue;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="aforisma">
+
+        <p id="aforisma1">“Fino a oggi la maggior parte degli scienziati è stata troppo occupata nello sviluppo di nuove teorie che descrivono che cosa sia l'universo per porsi la domanda perché?” - Stephen Hawking </p>
+        
+        <button onclick="nascondiTesto('aforisma1')">Nascondi Aforisma</button>
+    
+    </div>
+
+
+
+    <div class="aforisma">
+        <p id="aforisma2">“Dio non si immischia nelle vicende di dettaglio della storia naturale, cioè nelle cause secondarie che studiano gli scienziati.” - Charles Robert Darwin </p>
+        <button onclick="nascondiTesto('aforisma2')">Nascondi Aforisma</button>
+    </div>
+
+    <div class="aforisma">
+        <p id="aforisma3">“Un buon scienziato è una persona con idee originali. Un buon ingegnere è una persona che fa un progetto che funziona con il minor numero possibile di idee originali. Non ci sono primedonne in ingegneria.” -Freeman John Dyson </p>
+        <button onclick="nascondiTesto('aforisma3')">Nascondi Aforisma</button>
+    </div>
+
+    <div class="aforisma">
+        <p id="aforisma4">“Chi non ammette l'insondabile mistero non può essere neanche uno scienziato.”  - Albert Einstein </p>
+        <button onclick="nascondiTesto('aforisma4')">Nascondi Aforisma</button>
+    </div>
+
+    <div class="aforisma">
+        <p id="aforisma5">“Nemmeno nel Ventiduesimo secolo era ancora stato scoperto il sistema per evitare che scienziati di una certa età e di idee retrograde occupassero posizioni amministrative d’importanza capitale.” -  Arthur Charles Clarke </p>
+        <button onclick="nascondiTesto('aforisma5')">Nascondi Aforisma</button>
+    </div>
+
+    <script>
+        function nascondiTesto(id) {
+            const testo = document.getElementById(id);
+            testo.style.display = "none"; // Nasconde il testo impostando display a 'none'
+        }
+    </script>
+
+</body>
+</html>
