@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcola Età con Prompt</title>
+</head>
+<body>
+
+    <h1>Calcola la tua età in giorni, ore e secondi</h1>
+    
+    <script>
+        // Funzione per calcolare la differenza tra le date
+        function calcolaEta() {
+            // Richiedi nome e data di nascita con il comando prompt
+            const nome = prompt("Come ti chiami?");
+            const dataNascitaStr = prompt("Qual è la tua data di nascita? (Formato: YYYY-MM-DD)");
+
+        
+            // Converti la data di nascita in un oggetto Date
+            const dataNascita = new Date(dataNascitaStr);
+
+            // Verifica se la data è valida
+            if (isNaN(dataNascita.getTime())) {
+                alert("Formato data non valido. Assicurati di usare il formato YYYY-MM-DD.");
+                return;
+            }
+
+            // Ottieni la data attuale
+            const oggi = new Date();
+
+            // Calcola la differenza in millisecondi
+            const differenza = oggi - dataNascita;
+
+            // Calcola giorni, ore e secondi
+            const giorni = Math.floor(differenza / (1000 * 60 * 60 * 24));
+            const ore = Math.floor(differenza / (1000 * 60 * 60));
+            const secondi = Math.floor(differenza / 1000);
+        }
+
+            // Mostra i risultati tramite alert
+            <p>${nome}, sei in vita da:
+- ${giorni} giorni
+- ${ore} ore
+- ${secondi} secondi
+       
+        </p>
+        // Esegui la funzione appena la pagina è aperta
+        calcolaEta();
+ 
+    </script>
+
+</body>
+</html>
