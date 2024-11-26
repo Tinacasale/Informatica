@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contatore Decrementale con Scarti Quadrati Medi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        #countdown {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+        #button {
+            font-size: 20px;
+            padding: 10px 20px;
+        }
+        #results {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="countdown">100.00</div>
+    <button id="button" onclick="recordTime()">Premi qui</button>
+
+    <div id="results"></div>
+
+    <script>
+        let count = 100.00;
+        let buttonPressedTimes = [];
+        let countdownInterval;
+        let button = document.getElementById('button');
+        let resultsDiv = document.getElementById('results');
+        let countdownDiv = document.getElementById('countdown');
+
+      
+        function startCountdown() {
+            countdownInterval = setInterval(function() {
+                count -= 0.01;
+                countdownDiv.textContent = count.toFixed(2);
+
+               
+                if (count <= 90.00 && count > 89.99) {
+                    button.disabled = false;
+                }
+                if (count <= 80.00 && count > 79.99) {
+                    button.disabled = false;
+                }
+                if (count <= 70.00 && count > 69.99) {
+                    button.disabled = false;
+                }
+                if (count <= 60.00 && count > 59.99) {
+                    button.disabled = false;
+                }
+                if (count <= 50.00 && count > 49.99) {
+                    button.disabled = false;
+                }
+                if (count <= 40.00 && count > 39.99) {
+                    button.disabled = false;
+                }
+                if (count <= 30.00 && count > 29.99) {
+                    button.disabled = false;
+                }
+                if (count <= 20.00 && count > 19.99) {
+                    button.disabled = false;
+                }
+                if (count <= 10.00 && count > 9.99) {
+                    button.disabled = false;
+                }
+
+            
+                if (count <= 0) {
+                    clearInterval(countdownInterval);
+                    calculateDifferences();
+                }
+            }, 10);
+        }
+
+     
+        function recordTime() {
+            buttonPressedTimes.push(count);
+            button.disabled = true;
+            resultsDiv.innerHTML = `Tempo registrato: ${count.toFixed(2)}`;
+        }
+
+       
+        function calculateDifferences() {
+            const optimalTime = 90.00;
+            let differencesHtml = '<h3>Differenze:</h3>';
+            let squaredDifferences = [];
+            
+            buttonPressedTimes.forEach(time => {
+                let diff = optimalTime - time;
+                let squaredDiff = Math.pow(diff, 2);
+                squaredDifferences.push(squaredDiff);
+                differencesHtml += `<p>Tempo ottimale (90) - Tempo registrato (${time.toFixed(2)}): ${diff.toFixed(2)}</p>`;
+            });
+
+        
+            let meanSquaredDifference = squaredDifferences.reduce((sum, value) => sum + value, 0) / squaredDifferences.length;
+
+          
+            let standardDeviation = Math.sqrt(meanSquaredDifference);
+
+            differencesHtml += `<h4>Deviazione quadratica media (scarto quadratico medio): ${standardDeviation.toFixed(2)}</h4>`;
+            resultsDiv.innerHTML += differencesHtml;
+        }
+
+       
+        startCountdown();
+    </script>
+
+</body>
+</html>
