@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcolo del tempo di vita</title>
+    <script>
+        window.onload = function() {
+           
+            var nome = prompt("Inserisci il tuo nome:");
+            var dataNascita = prompt("Ciao " + nome + ", inserisci la tua data di nascita (formato: YYYY-MM-DD):");
+
+     
+            var dataNascitaObj = new Date(dataNascita);
+
+            var dataAttuale = new Date();
+
+            
+            var differenzaMillis = dataAttuale - dataNascitaObj;
+
+          
+            var giorni = Math.floor(differenzaMillis / (1000 * 60 * 60 * 24)); 
+            var ore = Math.floor(differenzaMillis / (1000 * 60 * 60)); 
+            var secondi = Math.floor(differenzaMillis / 1000);
+
+       
+            alert(nome + ", sei in vita da: \n" + giorni + " giorni, \n" + ore + " ore, \n" + secondi + " secondi.");
+        };
+    </script>
+</head>
+<body>
+    <h1>Benvenuto!</h1>
+    <p>Questo programma calcola da quanti giorni, ore e secondi sei in vita.</p>
+</body>
+</html>
