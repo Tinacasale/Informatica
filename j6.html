@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contatore Decrementale</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        #countdown {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+        #button {
+            font-size: 20px;
+            padding: 10px 20px;
+        }
+        #results {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        #spiegazione{
+            padding: 20px 30px;
+            background-color: lightblue;
+           width: 300px;
+           text-align: center;
+           border-width: 400px;
+        }
+
+        #h1{
+        font-size: x-large;
+        }
+            </style>
+</head>
+<body>
+    <h1>Pomodoro</h1>
+    <div id="countdown">100.00</div>
+    <button id="button" onclick="recordTime()">Premi qui</button>
+
+    <div id="results"></div>
+
+    <div id="spiegazione">In questo gioco devi cliccare il bottone ogni volta che il timer raggiunge un numero intero. Alla fine il programma ti stampa tutti i tuoi risultati e le differenze rispetto al tempo ottimale.</div>
+
+    <script>
+        let count = 100.00; 
+        let buttonPressedTimes = []; 
+        let countdownInterval;
+        let button = document.getElementById('button');
+        let resultsDiv = document.getElementById('results');
+        let countdownDiv = document.getElementById('countdown');
+
+
+        function startCountdown() {
+            countdownInterval = setInterval(function() {
+                count -= 0.05;
+                countdownDiv.textContent = count.toFixed(2);
+
+                if (count <= 90.00 && count > 84.99) {
+                    button.disabled = false;
+                }
+                if (count <= 80.00 && count > 74.99) {
+                    button.disabled = false;
+                }
+                if (count <= 70.00 && count > 64.99) {
+                    button.disabled = false;
+                }
+                if (count <= 60.00 && count > 54.99) {
+                    button.disabled = false;
+                }
+                if (count <= 50.00 && count > 44.99) {
+                    button.disabled = false;
+                }
+                if (count <= 40.00 && count > 34.99) {
+                    button.disabled = false;
+                }
+                if (count <= 30.00 && count > 24.99) {
+                    button.disabled = false;
+                }
+                if (count <= 20.00 && count > 14.99) {
+                    button.disabled = false;
+                }
+                if (count <= 10.00 && count > 4.99) {
+                    button.disabled = false;
+                }
+
+                if (count <= 0) {
+                    clearInterval(countdownInterval);
+                    calculateDifferences();
+                }
+            }, 10); 
+        }
+
+   
+        function recordTime() {
+            buttonPressedTimes.push(count);
+            button.disabled = true; 
+            resultsDiv.innerHTML = `Tempo registrato: ${count.toFixed(2)}`;
+        }
+
+        function calculateDifferences() {
+            const optimalTime = 90.00;
+            let differencesHtml = '<h3>Differenze:</h3>';
+            buttonPressedTimes.forEach(time => {
+                let diff = optimalTime - time;
+                differencesHtml += `<p>Tempo ottimale - Tempo registrato (${time.toFixed(2)})= ${diff.toFixed(2)}</p>`;
+            });
+            resultsDiv.innerHTML += differencesHtml;
+        }
+
+        startCountdown();
+    </script>
+
+</body>
+</html>
