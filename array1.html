@@ -5,43 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Array1</title>
 </head>
-
 <body>
-    
-<p>Definizione di array
-    Ua struttura dati composta da elementi omogenei tra loro
-    (numerici, oggetti o altre strutture dati)
+   
+<h1> Definizione di array: struttura dati composta da elementi omogenei tra loro (numerici, oggetti o altre strutture dati)
+ </h1>
+   
+   <h2>
+    Esempio stampa di array
+   </h2>
+   <p id="out1"></p>
 
-</p>
 
-<p>
-    esempio  stampa di array
-</P>
-
-<p id="out1"></p>
 
 <script>
 
-    const arrymorra=["sasso", "carta", "forbice"]
+        const arrymorra=["sasso","mano", "forbice"]
 
 
-    let tiro=-1;
-    for(let i=0; i<10; i++){
-    let tiro=numeroCasuale()
-    document.getElementById("out1").innerHTML=arrymorra[tiro]
-    console.log(arrymorra)
 
+        let tiro=-1;
+
+        for(let i=0;i<10;i++)
+        {
+        tiro=numeroCasuale()
+
+        document.getElementById("out1").innerHTML+=arrymorra[tiro] +" "
+        }
+        console.log(arrymorra)
+
+
+
+
+function numeroCasuale() {
+  return Math.floor(Math.random() * 3); // Restituisce un numero tra 0 e 2
 }
 
-function numeroCasuale(){
-    return Math.floor(Math.random()*3);
 
-}
 
 </script>
-
-
-
 
 </body>
 </html>
