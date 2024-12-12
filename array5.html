@@ -1,65 +1,79 @@
-<!DOCTYPE html>
+<!DOCTYPE html>  
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analisi Numerica con Array</title>
+    <style>
+        .highlight {
+            color: red; 
+        }
+    </style>
 </head>
 <body>
 
     <h1>Analisi Numerica con Array</h1>
-    <p>Numeri Primi:</p>
-    <p id="primeOutput"></p>
-    <p>Numeri Non Primi:</p>
-    <p id="nonprimeOutput"></p>
-    
-    <script>
+    <p>Numeri primi da 0 a 1000:</p>
+    <p id="out1"></p>
+    <p>Numeri non primi con i loro fattori:</p>
+    <p id="out2"></p>
 
-          function isPrime(n) {  
+    <script>
+        
+        function isPrime(n) {
             if (n <= 1) return false;
             for (let i = 2; i <= Math.sqrt(n); i++) {
                 if (n % i === 0) return false;
             }
             return true;
-          }
+        }
 
-          function getFactors(n) {
+       
+        function getFactors(n) {
             let factors = [];
-            for (let i = 1; i <= n; i++) {
-                if (n % i === 0) factors.push(i);
-            }
-            return factors.slice(0, 4);
-          }
-
-          function numeriPrimieNonPrimi() {
-            let primeOutput = '';
-            for (let i = 0; i <= 1000; i++) {
-                if (isPrime(i)) {
-                    primeOutput += `<p>${i} è un numero primo</p>`;
-                } else {
-                    let factors = getFactors(i).join(", ");
-                    primeOutput += `<p>${i} non è un numero primo (Fattori: ${factors})</p>`;
+            for (let i = 1; i <= n / 2; i++) {
+                if (n % i === 0) {
+                    factors.push(i);
                 }
             }
-            document.getElementById("primeOutput").innerHTML = primeOutput;
-          }
+            return factors;
+        }
 
-          function numeriPrimieNonPrimi() {
-            let primeOutput = '';
-            for (let i = 0; i <= 1000; i++) {
-                if (isPrime(i)) {
-                    primeOutput += `<p>${i} è un numero primo</p>`;
+      
+        function sumFactors(factors) {
+            return factors.reduce((sum, factor) => sum + factor, 0);
+        }
+
+       
+        let numeriPrimi = [];
+        let numeriNonPrimi = [];
+        let highlightCount = 0;  
+
+       
+        for (let i = 0; i <= 1000; i++) {
+            if (isPrime(i)) {
+                numeriPrimi.push(i); 
+            } else {
+                let factors = getFactors(i);
+                let sum = sumFactors(factors);
+
+               
+                if (sum === i && highlightCount < 4) {
+                    numeriNonPrimi.push('<span class="highlight">' + i + ' (Fattori: ' + factors.join(', ') + ') - Somma Fattori: ' + sum + '</span><br>');
+                    highlightCount++;
                 } else {
-                    let factors = getFactors(i).join(", ");
-                    primeOutput += `<p>${i} non è un numero primo (Fattori: ${factors})</p>`;
+                    numeriNonPrimi.push(i + ' (Fattori: ' + factors.join(', ') + ') - Somma Fattori: ' + sum + '<br>');
                 }
             }
-            document.getElementById("primeOutput").innerHTML = primeOutput;
-          }
+        }
 
+       
+        document.getElementById("out1").innerHTML = numeriPrimi.join('<br>');
 
+        
+        document.getElementById("out2").innerHTML = numeriNonPrimi.join('');
 
-          numeriPrimieNonPrimi();
     </script>
+
 </body>
 </html>
