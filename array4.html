@@ -3,55 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-<h1> Analisi Numerica con Array</h1>
-<p> Lista generata:</p>
-<p id="out1"></p>
-
+    <title>Analisi Numerica con Array</title>
 </head>
 <body>
-    
-    <script>   
-        //array visibile a tutto lo script
-    let numeri=[ ];
 
-    // il numero casuale viene inserito nell'array in posizione i
-    function InserisceNumeroCasuale(i)
-    {
-                
-        let NumeroCasuale=Math.floor(Math.random()*100);
-        numeri[i]=NumeroCasuale;
+    <h1>Analisi Numerica con Array</h1>
+    <p>Lista generata:</p>
+    <pre id="out1"></pre>
 
+    <script>
+       
+        let numeri = [];
+
+        
+        function InserisceNumeroCasuale(i) {
+            let NumeroCasuale = Math.floor(Math.random() * 100) + 1; 
+            numeri[i] = NumeroCasuale;
+        }
+
+      
+        for (let i = 0; i < 1000; i++) {
+            InserisceNumeroCasuale(i);
+        }
+
+      
+        document.getElementById("out1").textContent = numeri.join(', '); 
+      
+        function isPrime(n) {
+            let prime = true;
+            for (let i = 2; i <= Math.sqrt(n); i++) {
+                if (n % i === 0) {
+                    prime = false;
+                    break;
                 }
+            }
+            return prime;
+        }
 
-                InserisceNumeroCasuale(0);
-                InserisceNumeroCasuale(1);
-                document.getElementById("out1").innerHTML=numeri;
+        console.log(isPrime(11)); 
 
-
-
-
-function isPrime(n)
-{
-    
-    
-    let prime=true;
-
-    for (let i=2;i<=(n/2);i++)
-{
-
-    if ((n%i)==0)
-    
-    {prime=false;}
-}
-return prime;
-
-
-
-}
-    console.log(isPrime(11));
     </script>
-
 
 </body>
 </html>
