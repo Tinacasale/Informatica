@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funzione getElement</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Trova l'Elemento in un Array</h1>
+    <p>Inserisci un indice per ottenere l'elemento corrispondente nell'array.</p>
+
+ 
+    <input type="number" id="indexInput" placeholder="Inserisci indice" min="0">
+    <button onclick="showElement()">Trova Elemento</button>
+
+   
+    <div id="result"></div>
+
+    <script>
+      
+        const morra = ["Carta", "Roccia", "Forbice"];
+
+    
+        function getElement(array, index) {
+            if (index < 0 || index >= array.length) {
+                return "Indice non valido";
+            }
+            return array[index];
+        }
+
+       
+        function showElement() {
+    
+            const index = parseInt(document.getElementById("indexInput").value);
+
+          
+            const result = getElement(morra, index);
+
+    
+            document.getElementById("result").textContent = `Risultato: ${result}`;
+        }
+    </script>
+
+</body>
+</html>
