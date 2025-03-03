@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modulo con POST</title>
+</head>
+<body>
+    <h2>Modulo con POST</h2>
+    <form id="form-post" action="action.html" method="post">
+        <label for="nickname">Nickname:</label>
+        <input type="text" id="nickname" name="nickname" required><br><br>
+
+        <label for="message">Messaggio:</label>
+        <textarea id="message" name="message" required></textarea><br><br>
+
+        <label for="visibility">Visibilità:</label>
+        <select id="visibility" name="visibility">
+            <option value="pubblico">Pubblico</option>
+            <option value="privato">Privato</option>
+        </select><br><br>
+
+        <input type="submit" value="Invia">
+    </form>
+
+    <script>
+
+        document.getElementById("form-post").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            let nickname = document.getElementById("nickname").value;
+            let message = document.getElementById("message").value;
+            let visibility = document.getElementById("visibility").value;
+
+            let data = `
+                <h3>Dettagli Inviati</h3>
+                <p><strong>Nickname:</strong> ${nickname}</p>
+                <p><strong>Messaggio:</strong> ${message}</p>
+                <p><strong>Visibilità:</strong> ${visibility}</p>
+            `;
+            
+  
+            let newWindow = window.open();
+            newWindow.document.write(data);
+        });
+    </script>
+</body>
+</html>
