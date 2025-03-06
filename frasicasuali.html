@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generatore di frasi casuali</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .frase {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Generatore di frasi casuali</h1>
+    <button onclick="generaFrase()">Genera una frase</button>
+    <div class="frase" id="fraseGenerata">La frase apparirà qui...</div>
+</div>
+
+<script>
+    // Gli array di soggetti, verbi e complementi
+    let soggetti = ["Mario", "Luca", "Giulia", "Anna", "Francesco", "Elena", "Roberto", "Sara", "Davide", "Chiara"];
+    let verbi = ["mangia", "corre", "legge", "scrive", "disegna", "parla", "cammina", "guarda", "ascolta", "gioca"];
+    let complemento = ["una mela", "nel parco", "un libro", "una lettera", "un quadro", "al telefono", "sul marciapiede", "la TV", "musica", "a calcio"];
+
+    // Funzione per generare una frase casuale
+    function generaFrase() {
+        // Seleziona casualmente un elemento da ciascun array
+        let soggetto = soggetti[Math.floor(Math.random() * soggetti.length)];
+        let verbo = verbi[Math.floor(Math.random() * verbi.length)];
+        let compl = complemento[Math.floor(Math.random() * complemento.length)];
+
+        // Mostra la frase generata nel div con id "fraseGenerata"
+        document.getElementById("fraseGenerata").innerHTML = `${soggetto} ${verbo} ${compl}`;
+    }
+</script>
+
+</body>
+</html>
