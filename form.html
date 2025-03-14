@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form di Input</title>
+  <script>
+  
+    function calcolaLunghezza(stringa) {
+      return stringa.length;
+    }
+
+    function invertiStringa(stringa) {
+      return stringa.split('').reverse().join('');
+    }
+
+
+    function unisciStringhe(stringa1, stringa2) {
+      return stringa1 + " " + stringa2;
+    }
+
+ 
+    function sommaLunghezze(stringa1, stringa2) {
+      const lunghezza1 = stringa1.length;
+      const lunghezza2 = stringa2.length;
+      const somma = lunghezza1 + lunghezza2;
+
+      if (lunghezza2 > 20) {
+        alert("La seconda stringa è troppo lunga!");
+      }
+
+      return somma;
+    }
+
+
+    function elaboraForm() {
+      const stringa1 = document.getElementById("stringa1").value;
+      const stringa2 = document.getElementById("stringa2").value;
+
+  
+      const lunghezza1 = calcolaLunghezza(stringa1);
+      const lunghezza2 = calcolaLunghezza(stringa2);
+      const stringaInversa1 = invertiStringa(stringa1);
+      const stringaInversa2 = invertiStringa(stringa2);
+      const stringheUnite = unisciStringhe(stringa1, stringa2);
+      const lunghezzaTotale = sommaLunghezze(stringa1, stringa2);
+
+     
+      document.getElementById("lunghezza1").innerText = "Lunghezza prima stringa: " + lunghezza1;
+      document.getElementById("lunghezza2").innerText = "Lunghezza seconda stringa: " + lunghezza2;
+      document.getElementById("inversa1").innerText = "Prima stringa invertita: " + stringaInversa1;
+      document.getElementById("inversa2").innerText = "Seconda stringa invertita: " + stringaInversa2;
+      document.getElementById("unite").innerText = "Stringhe unite: " + stringheUnite;
+      document.getElementById("somma").innerText = "Somma lunghezze: " + lunghezzaTotale;
+    }
+  </script>
+</head>
+<body>
+
+  <h1>Inserisci due stringhe</h1>
+
+
+  <form onsubmit="event.preventDefault(); elaboraForm();">
+    <label for="stringa1">Prima stringa:</label>
+    <input type="text" id="stringa1" required><br><br>
+
+    <label for="stringa2">Seconda stringa:</label>
+    <input type="text" id="stringa2" required><br><br>
+
+    <button type="submit">Elabora</button>
+  </form>
+
+  <h2>Risultati:</h2>
+  <p id="lunghezza1"></p>
+  <p id="lunghezza2"></p>
+  <p id="inversa1"></p>
+  <p id="inversa2"></p>
+  <p id="unite"></p>
+  <p id="somma"></p>
+
+</body>
+</html>
