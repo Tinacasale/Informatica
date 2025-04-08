@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numeri Casuali</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #output {
+            margin-top: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>Generatore di Numeri Casuali</h1>
+    <label for="min">Min:</label>
+    <input type="number" id="min" value="1">
+    <label for="max">Max:</label>
+    <input type="number" id="max" value="100">
+    <button onclick="startGenerazione()">Inizia Generazione</button>
+    <div id="output"></div>
+
+    <script>
+        let numeriArray = [];
+        let rapportoArray = [];
+        let generazioneInCorso = false;
+        let count = 0;
+
+        function startGenerazione() {
+            if (generazioneInCorso) return;  
+            document.getElementById('output').textContent = ""; 
+            numeriArray = [];
+            rapportoArray = [];
+            count = 0;
+
+            const min = parseInt(document.getElementById('min').value);
+            const max = parseInt(document.getElementById('max').value);
+            const mediaDivisore = (max - min) / 2; 
+
+            let interval = setInterval(function () {
+                let numeroCasuale = Math.floor(Math.random() * (max - min + 1)) + min; 
+                numeriArray.push(numeroCasuale);
+
+                if (numeriArray.length > 1) {
+                    let rapporto = numeriArray[numeriArray.length - 1] / numeriArray[numeriArray.length - 2];
+                    rapportoArray.push(rapporto);
+                }
+
+                let distanza = Math.abs(numeroCasuale - mediaDivisore);
+                let media = (max - min) / 2;  
+
+                document.getElementById('output').textContent += `
+                    Numero: ${numeroCasuale} 
+                    | Rapporto: ${rapportoArray[rapportoArray.length - 1] || 'N/A'} 
+                    | Distanza dalla metà del range: ${distanza.toFixed(2)} 
+                    | Media: ${media.toFixed(2)}
+                    \n
+                `;
+
+                count++;
+                if (count >= 10000) {  
+                    clearInterval(interval);
+                    generazioneInCorso = false;
+                    document.getElementById('output').textContent += "Generazione completata.\n";
+                }
+
+            }, 500); 
+        }
+
+    </script>
+</body>
+</html>
