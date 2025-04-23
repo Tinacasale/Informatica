@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Clip Producer Simulator</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    button { margin: 5px; padding: 10px 20px; }
+    #log { background: #f0f0f0; padding: 10px; margin-top: 20px; height: 200px; overflow-y: auto; font-family: monospace; }
+  </style>
+</head>
+<body>
+
+  <h1>🛠️ Clip Producer</h1>
+
+  <button onclick="start()">▶️ Avvia produzione</button>
+  <button onclick="stop()">⏸️ Ferma produzione</button>
+  <button onclick="reset()">🔁 Reset produzione</button>
+  <button onclick="boost()">🚀 Boost x3 per 5s</button>
+  <button onclick="showStatus()">📊 Stato</button>
+
+  <div id="log"></div>
+
+  <script>
+    class ClipProducer {
+      constructor(name, productionRatePerSecond) {
+        this.name = name;
+        this.productionRate = productionRatePerSecond;
+        this.totalClips = 0;
+        this.running = false;
+        this._intervalId = null;
+        this._originalRate = productionRatePerSecond;
+      }
+
+      startProduction() {
+        if (this.running) return;
+        this.running = true;
+        this._intervalId = setInterval(() => {
+          this.totalClips += this.productionRate;
+          log(`[${this.name}] Graffette totali: ${this.totalClips}`);
+        }, 1000);
+      }
+
+      stopProduction() {
+        if (!this.running) return;
+        clearInterval(this._intervalId);
+        this._intervalId = null;
+        this.running = false;
+        log(`[${this.name}] Produzione fermata.`);
+      }
+
+      resetProduction() {
+        this.totalClips = 0;
+        log(`[${this.name}] Conteggio graffette azzerato.`);
+      }
+
+      status() {
+        const s = {
+          name: this.name,
+          running: this.running,
+          productionRate: this.productionRate,
+          totalClips: this.totalClips
+        };
+        log(`[STATUS] ${JSON.stringify(s, null, 2)}`);
+        return s;
+      }
+
+      boostProduction(multiplier, durationInSeconds) {
+        if (!this.running) {
+          log(`[${this.name}] Produzione non attiva. Impossibile applicare il boost.`);
+          return;
+        }
+
+        log(`[${this.name}] Boost produzione x${multiplier} per ${durationInSeconds} secondi!`);
+        this.productionRate *= multiplier;
+
+        setTimeout(() => {
+          this.productionRate = this._originalRate;
+          log(`[${this.name}] Boost terminato. Produzione tornata normale.`);
+        }, durationInSeconds * 1000);
+      }
+    }
+
+
+    function log(text) {
+      const logDiv = document.getElementById('log');
+      logDiv.innerHTML += text + "<br>";
+      logDiv.scrollTop = logDiv.scrollHeight;
+    }
+e
+    const fabbrica = new ClipProducer("SuperClip", 10);
+
+    function start() { fabbrica.startProduction(); }
+    function stop() { fabbrica.stopProduction(); }
+    function reset() { fabbrica.resetProduction(); }
+    function boost() { fabbrica.boostProduction(3, 5); }
+    function showStatus() { fabbrica.status(); }
+  </script>
+</body>
+</html>
