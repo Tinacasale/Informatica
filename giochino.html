@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gioco dei Tempi di Reazione</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+      flex-direction: column;
+    }
+    .message {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .reaction-times {
+      font-size: 1.2rem;
+      margin-top: 20px;
+    }
+    .button-container {
+      margin-top: 20px;
+    }
+    .button {
+      font-size: 1.5rem;
+      padding: 20px;
+      margin: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .button:hover {
+      background-color: #45a049;
+    }
+    .input-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="input-container" id="input-container">
+    <label for="name">Inserisci il tuo nome:</label>
+    <input type="text" id="name" required>
+    <label for="age">Inserisci la tua età:</label>
+    <input type="number" id="age" required min="1">
+    <button class="button" onclick="startGame()">Inizia il Gioco</button>
+  </div>
+
+  <div class="message" id="message"></div>
+  
+  <div class="button-container" id="button-container">
+    <button class="button" id="ArrowUp" style="display:none;">Su</button>
+    <button class="button" id="ArrowDown" style="display:none;">Giù</button>
+    <button class="button" id="ArrowRight" style="display:none;">Destra</button>
+    <button class="button" id="ArrowLeft" style="display:none;">Sinistra</button>
+  </div>
+
+  <div class="reaction-times" id="reaction-times"></div>
+
+  <script>
+    let startTime;
+    let reactionTime;
+    let reactionTimes = []; // Array per memorizzare i tempi di reazione
+    let keyPressCount = 0; // Contatore per i tasti premuti
+    const directions = ["ArrowUp", "ArrowDown", "ArrowRight", "ArrowLeft"]; // Tasti direzionali disponibili
+
+    // Funzione per iniziare il gioco
+    function startGame() {
+      const name = document.getElementById("name").value;
+      const age = document.getElementById("age").value;
+
+      if (!name || !age) {
+        alert("Per favore inserisci nome e età.");
+        return;
+      }
+
+      document.getElementById("input-container").style.display = "none"; // Nasconde i campi di input
+      document.getElementById("message").textContent = `Ciao ${name}, preparati!`;
+
+      // Dopo 2 secondi, inizia a mostrare i tasti direzionali casuali
+      setTimeout(() => {
+        showNextButton();
+        document.getElementById("message").textContent = "Premi il tasto che appare!";
+      }, 2000); // Attendere 2 secondi prima di mostrare il primo tasto
+    }
+
+    // Funzione per mostrare il prossimo tasto casuale
+    function showNextButton() {
+      if (keyPressCount < 20) {
+        // Scegli un tasto casuale da premere
+        const randomDirection = directions[Math.floor(Math.random() * directions.length)];
+        
+        // Mostra il tasto casuale
+        const button = document.getElementById(randomDirection);
+        button.style.display = "inline-block";
+
+        // Inizia il timer per calcolare il tempo di reazione
+        startTime = new Date();
+
+        // Ascolta la pressione del tasto
+        document.addEventListener("keydown", handleKeyPress);
+      } else {
+        // Quando i 50 tasti sono stati premuti, mostra i risultati
+        setTimeout(() => {
+          document.getElementById("message").textContent = `Gioco completato! Hai premuto 20 tasti.`;
+          displayReactionTimes(); // Mostra i tempi di reazione al termine
+        }, 500);
+      }
+    }
+
+    // Funzione per gestire la pressione dei tasti direzionali
+    function handleKeyPress(event) {
+      if (directions.includes(event.key)) {
+        // Calcoliamo il tempo di reazione
+        const endTime = new Date();
+        reactionTime = (endTime - startTime) / 1000; // Tempo in secondi
+
+        // Registra il tempo di reazione
+        reactionTimes.push(reactionTime);
+        keyPressCount++;
+
+        // Nascondi il tasto che è stato premuto
+        const button = document.getElementById(event.key);
+        button.style.display = "none";
+
+        // Mostra il tempo di reazione
+        document.getElementById("message").textContent = `Tempo di reazione: ${reactionTime.toFixed(3)} secondi`;
+
+        // Aggiorna il contenitore dei tempi di reazione
+        const reactionTimesContainer = document.getElementById('reaction-times');
+        reactionTimesContainer.innerHTML += `Pressione ${keyPressCount}: ${reactionTime.toFixed(3)} secondi<br>`;
+
+        // Aggiungi un piccolo ritardo prima di mostrare il prossimo tasto
+        setTimeout(() => {
+          showNextButton(); // Mostra il prossimo tasto
+        }, 500); // Attendere mezzo secondo
+      }
+    }
+
+    // Funzione per visualizzare i tempi di reazione
+    function displayReactionTimes() {
+      const reactionTimesContainer = document.getElementById('reaction-times');
+      if (reactionTimes.length > 0) {
+        reactionTimesContainer.innerHTML = `<strong>Tempi di Reazione (per 50 tasti):</strong><br>${reactionTimes
+          .map((time, index) => `Pressione ${index + 1}: ${time.toFixed(3)} secondi`)
+          .join('<br>')}`;
+      }
+    }
+  </script>
+
+</body>
+</html>
