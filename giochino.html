@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Gioco dei Tempi di Reazione</title>
   <style>
     body {
@@ -16,22 +16,18 @@
       background-color: #f0f0f0;
       padding-top: 30px;
     }
-
     .message {
       font-size: 1.5rem;
       margin: 20px;
       text-align: center;
     }
-
-    .reaction-times {
+    .reaction-times, .tempi-reazione {
       font-size: 1.1rem;
       margin-top: 20px;
     }
-
     .button-container {
       margin-top: 20px;
     }
-
     .button {
       font-size: 1.5rem;
       padding: 20px;
@@ -41,19 +37,16 @@
       border-radius: 5px;
       cursor: default;
     }
-
     #ArrowUp { background-color: blue; }
     #ArrowDown { background-color: red; }
     #ArrowRight { background-color: green; }
     #ArrowLeft { background-color: orange; }
-
     .input-container {
       display: flex;
       flex-direction: column;
       align-items: center;
       margin-bottom: 20px;
     }
-
     .instructions {
       font-size: 1rem;
       margin-bottom: 20px;
@@ -62,26 +55,31 @@
       border-radius: 10px;
       border: 1px solid #ccc;
     }
-
   </style>
 </head>
 <body>
 
   <div class="instructions">
-    <strong>ISTRUZIONI:</strong><br>
-    Premi il tasto corretto corrispondente al colore mostrato:<br>
-    🔵 <b>Blu</b> = Su (↑)<br>
-    🔴 <b>Rosso</b> = Giù (↓)<br>
-    🟢 <b>Verde</b> = Destra (→)<br>
-    🟠 <b>Arancione</b> = Sinistra (←)<br>
+    <strong>ISTRUZIONI:</strong><br />
+    Premi il tasto corretto corrispondente al colore mostrato:<br />
+    🔵 <b>Blu</b> = Su (↑)<br />
+    🔴 <b>Rosso</b> = Giù (↓)<br />
+    🟢 <b>Verde</b> = Destra (→)<br />
+    🟠 <b>Arancione</b> = Sinistra (←)<br />
   </div>
 
   <div class="input-container" id="input-container">
-    <label for="name">Inserisci il tuo nome:</label>
-    <input type="text" id="name" required>
-    <label for="age">Inserisci la tua età:</label>
-    <input type="number" id="age" required min="1">
-    <button class="button" style="background-color: #4CAF50;" onclick="startGame()">Inizia il Gioco</button>
+    <label for="nome">Inserisci il tuo nome:</label>
+    <input type="text" id="nome" required />
+    <label for="età">Inserisci la tua età:</label>
+    <input type="number" id="età" required min="1" />
+    <button
+      class="button"
+      style="background-color: #4caf50; cursor: pointer;"
+      onclick="startGame()"
+    >
+      Inizia il Gioco
+    </button>
   </div>
 
   <div class="message" id="message"></div>
@@ -93,7 +91,9 @@
     <button class="button" id="ArrowLeft" style="display:none;">Sinistra</button>
   </div>
 
-  <div class="reaction-times" id="reaction-times"></div>
+  <div class="tempi-reazione" id="tempi-reazione"></div>
+
+  <div id="download-container" style="margin-top:20px;"></div>
 
   <script>
     let startTime;
@@ -106,16 +106,16 @@
     const maxAttempts = 15;
 
     function startGame() {
-      const name = document.getElementById("name").value;
-      const age = document.getElementById("age").value;
+      const nome = document.getElementById("nome").value.trim();
+      const età = document.getElementById("età").value.trim();
 
-      if (!name || !age) {
+      if (!nome || !età) {
         alert("Per favore inserisci nome e età.");
         return;
       }
 
       document.getElementById("input-container").style.display = "none";
-      document.getElementById("message").textContent = `Ciao ${name}, preparati!`;
+      document.getElementById("message").textContent = `Ciao ${nome}, preparati!`;
 
       setTimeout(() => {
         document.addEventListener("keydown", handleKeyPress);
@@ -127,7 +127,7 @@
     function showNextButton() {
       if (keyPressCount < maxAttempts) {
         currentDirection = directions[Math.floor(Math.random() * directions.length)];
-        directions.forEach(dir => {
+        directions.forEach((dir) => {
           document.getElementById(dir).style.display = "none";
         });
         document.getElementById(currentDirection).style.display = "inline-block";
@@ -149,7 +149,7 @@
         keyPressCount++;
         document.getElementById(currentDirection).style.display = "none";
         document.getElementById("message").textContent = `Tempo di reazione: ${reactionTime.toFixed(3)} secondi`;
-        document.getElementById('reaction-times').innerHTML += `✔️ Pressione ${keyPressCount}: ${reactionTime.toFixed(3)}s<br>`;
+        document.getElementById("tempi-reazione").innerHTML += `✔️ Pressione ${keyPressCount}: ${reactionTime.toFixed(3)}s<br />`;
         setTimeout(() => showNextButton(), 500);
       } else {
         errorCount++;
@@ -159,10 +159,42 @@
 
     function displayReactionTimes() {
       const total = reactionTimes.reduce((a, b) => a + b, 0);
-      document.getElementById('reaction-times').innerHTML += `<br><strong>Statistiche:</strong><br>
-        ✅ Corrette: ${reactionTimes.length}<br>
-        ❌ Errori: ${errorCount}<br>
-        ⏱️ Media: ${(total / reactionTimes.length).toFixed(3)} s<br>`;
+      document.getElementById("tempi-reazione").innerHTML += `<br /><strong>Statistiche:</strong><br />
+        ✅ Corrette: ${reactionTimes.length}<br />
+        ❌ Errori: ${errorCount}<br />
+        ⏱️ Media: ${(total / reactionTimes.length).toFixed(3)} s<br />`;
+
+      const downloadContainer = document.getElementById("download-container");
+      downloadContainer.innerHTML = `<button class="button" style="background-color: #2196F3; cursor: pointer;">Scarica risultati JSON</button>`;
+      downloadContainer.querySelector("button").addEventListener("click", downloadResults);
+    }
+
+    function downloadResults() {
+      const nome = document.getElementById("nome").value.trim();
+      const età = document.getElementById("età").value.trim();
+
+      const data = {
+        nome: nome,
+        età: età,
+        risultati: reactionTimes,
+        errori: errorCount,
+        media:
+          reactionTimes.length > 0
+            ? reactionTimes.reduce((a, b) => a + b, 0) / reactionTimes.length
+            : 0,
+        tentativi: reactionTimes.length + errorCount,
+      };
+
+      const jsonStr = JSON.stringify(data, null, 2);
+      const blob = new Blob([jsonStr], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `risultati_gioco_${nome || "utente"}.json`;
+      a.click();
+
+      URL.revokeObjectURL(url);
     }
   </script>
 
